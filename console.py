@@ -161,7 +161,7 @@ class HBNBCommand(cmd.Cmd):
                         if each[1][0] == '\"' and each[1][-1] == '\"':
                             each[1] = each[1][1:-1]
                             newlist.append(each)
-            if len(newlist) != 0:
+            if newlist is not None:
                 new_instance = HBNBCommand.classes[class_name]()
                 for attrs in newlist:
                     setattr(new_instance, attrs[0], attrs[1])
