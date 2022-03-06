@@ -164,6 +164,8 @@ class HBNBCommand(cmd.Cmd):
             if newlist is not None:
                 new_instance = HBNBCommand.classes[class_name]()
                 for attrs in newlist:
+                    if type(attrs[0]) is str:
+                        attrs[1] = attrs[1].replace('_', ' ')
                     setattr(new_instance, attrs[0], attrs[1])
                 storage.save()
                 print(new_instance.id)
