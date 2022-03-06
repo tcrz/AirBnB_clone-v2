@@ -165,8 +165,10 @@ class HBNBCommand(cmd.Cmd):
                 new_instance = HBNBCommand.classes[class_name]()
                 for attrs in newlist:
                     if type(attrs[0]) is str:
-                        # attrs[1] = attrs[1].replace('_', ' ')
-                        attrs[1] = attrs[1].replace('"', '\"')
+                        #replace underscores with space
+                        attrs[1] = attrs[1].replace('_', ' ')
+                        # escape doublequotes 
+                        attrs[1] = attrs[1].replace('"', '\\"')
                     setattr(new_instance, attrs[0], attrs[1])
                 storage.save()
                 print(new_instance.id)
