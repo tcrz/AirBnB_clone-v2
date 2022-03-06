@@ -169,12 +169,14 @@ class HBNBCommand(cmd.Cmd):
                 print(new_instance.id)
                 storage.save()
         else:
+            # print("in here")
             if not args:
                 print("** class name missing **")
                 return
             elif args not in HBNBCommand.classes:
                 print("** class doesn't exist **")
                 return
+            # to be deleted
             new_instance = HBNBCommand.classes[args]()
             storage.save()
             print(new_instance.id)
