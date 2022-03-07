@@ -55,4 +55,3 @@ class FileStorage:
             FileStorage.__objects.pop(obj)
         else:
             pass
-        
