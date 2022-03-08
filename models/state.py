@@ -11,3 +11,14 @@ class State(BaseModel, Base):
     name = Column(String(128), nullable=False)
     cities = relationship("City",
                           cascade="all, delete-orphan" backref="state")
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+    @property
+    def cities(self):
+        city_list = models.storage.all("City")
+        temp = []
+        for c_id in city_list:
+            if city_list[c_id].state_id == self.id:
+                temp.append(city_list)
+        return temp
