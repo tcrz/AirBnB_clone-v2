@@ -61,6 +61,7 @@ class DBstorage:
         from models.city import City
         from models.user import User
         from models.place import Place
+        from models.review import Review
 
         Base.metadata.create_all(self.__engine)
         session_factory = sessionmaker(bind=self.__engine,
