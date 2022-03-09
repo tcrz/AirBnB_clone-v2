@@ -168,7 +168,7 @@ class HBNBCommand(cmd.Cmd):
                         # replace underscores with space
                         attrs[1] = attrs[1].replace('_', ' ')
                         # escape doublequotes
-                        attrs[1] = attrs[1].replace('"', '\\"')
+                        attrs[1] = attrs[1].replace('"', '\"')
                     setattr(new_instance, attrs[0], attrs[1])
                 # storage.save()
                 print(new_instance.id)
