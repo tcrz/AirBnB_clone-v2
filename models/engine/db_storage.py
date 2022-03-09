@@ -6,6 +6,8 @@ import os
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, scoped_session
 from models.base_model import Base
+from models.state import State
+from models.city import City
 
 
 class DBstorage:
@@ -36,8 +38,8 @@ class DBstorage:
                       for mapper in Base.registry.mappers}
             for key in list(models.keys()):
                 for row in self.__session.query(models[key]):
-                    row = row.__class__.__name__ + '.' + row.id
-                    all_obj.update({key: row.to_dict})
+                    key = row.__class__.__name__ + '.' + row.id
+                    all_obj.update({key: row})
             return all_obj
 
     def new(self, obj):
@@ -57,6 +59,7 @@ class DBstorage:
         "creates all tables in database and current database session"
         from models.state import State
         from models.city import City
+        from models.user import User
 
         Base.metadata.create_all(self.__engine)
         session_factory = sessionmaker(bind=self.__engine,
