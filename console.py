@@ -165,14 +165,14 @@ class HBNBCommand(cmd.Cmd):
                 new_instance = HBNBCommand.classes[class_name]()
                 for attrs in newlist:
                     if type(attrs[0]) is str:
-                        #replace underscores with space
+                        # replace underscores with space
                         attrs[1] = attrs[1].replace('_', ' ')
-                        # escape doublequotes 
+                        # escape doublequotes
                         attrs[1] = attrs[1].replace('"', '\\"')
                     setattr(new_instance, attrs[0], attrs[1])
                 storage.save()
                 print(new_instance.id)
-                storage.save()
+                # storage.save()
         else:
             # print("in here")
             if not args:
@@ -258,23 +258,37 @@ class HBNBCommand(cmd.Cmd):
         print("Destroys an individual instance of a class")
         print("[Usage]: destroy <className> <objectId>\n")
 
-    def do_all(self, args):
+    def do_all(self, arg):
         """ Shows all objects, or all objects of a class"""
         print_list = []
 
-        if args:
-            args = args.split(' ')[0]  # remove possible trailing args
-            if args not in HBNBCommand.classes:
+        # if args:
+        #     args = args.split(' ')[0]  # remove possible trailing args
+        #     if args not in HBNBCommand.classes:
+        #         print("** class doesn't exist **")
+        #         return
+        #     for k, v in storage._FileStorage__objects.items():
+        #         if k.split('.')[0] == args:
+        #             print_list.append(str(v))
+        # else:
+        #     for k, v in storage._FileStorage__objects.items():
+        #         print_list.append(str(v))
+        objs_list = []
+        all_objs = storage.all()
+        if arg:
+            if arg in globals():
+                classname = globals()[arg]
+                for obj in all_objs.values():
+                    if isinstance(obj, classname):
+                        objs_list.append(str(obj))
+                print(objs_list)
+            else:
                 print("** class doesn't exist **")
-                return
-            for k, v in storage._FileStorage__objects.items():
-                if k.split('.')[0] == args:
-                    print_list.append(str(v))
         else:
-            for k, v in storage._FileStorage__objects.items():
-                print_list.append(str(v))
-
-        print(print_list)
+            for obj in all_objs.values():
+                objs_list.append(str(obj))
+            print(objs_list)
+        # print(print_list)
 
     def help_all(self):
         """ Help information for the all command """
