@@ -161,18 +161,17 @@ class HBNBCommand(cmd.Cmd):
                         if each[1][0] == '\"' and each[1][-1] == '\"':
                             each[1] = each[1][1:-1]
                             newlist.append(each)
-            if newlist is not None:
-                new_instance = HBNBCommand.classes[class_name]()
-                for attrs in newlist:
-                    if type(attrs[0]) is str:
-                        # replace underscores with space
-                        attrs[1] = attrs[1].replace('_', ' ')
+            new_instance = HBNBCommand.classes[class_name]()
+            for attrs in newlist:
+                if type(attrs[0]) is str:
+                    # replace underscores with space
+                    attrs[1] = attrs[1].replace('_', ' ')
                         # escape doublequotes
-                        attrs[1] = attrs[1].replace('"', '\"')
-                    setattr(new_instance, attrs[0], attrs[1])
-                # storage.save()
-                print(new_instance.id)
-                storage.save()
+                    attrs[1] = attrs[1].replace('"', '\"')
+                setattr(new_instance, attrs[0], attrs[1])
+            new_instance.save()
+            print(new_instance.id)
+            # storage.save()
         else:
             # print("in here")
             if not args:
@@ -270,6 +269,7 @@ class HBNBCommand(cmd.Cmd):
         #         print_list.append(str(v))
         objs_list = []
         all_objs = storage.all()
+        print(all_objs)
         if arg:
             if arg in globals():
                 classname = globals()[arg]
