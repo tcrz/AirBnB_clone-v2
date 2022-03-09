@@ -170,9 +170,9 @@ class HBNBCommand(cmd.Cmd):
                         # escape doublequotes
                         attrs[1] = attrs[1].replace('"', '\\"')
                     setattr(new_instance, attrs[0], attrs[1])
-                storage.save()
-                print(new_instance.id)
                 # storage.save()
+                print(new_instance.id)
+                storage.save()
         else:
             # print("in here")
             if not args:
@@ -181,11 +181,6 @@ class HBNBCommand(cmd.Cmd):
             elif args not in HBNBCommand.classes:
                 print("** class doesn't exist **")
                 return
-            # to be deleted
-            new_instance = HBNBCommand.classes[args]()
-            storage.save()
-            print(new_instance.id)
-            storage.save()
 
     def help_create(self):
         """ Help information for the create method """
