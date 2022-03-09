@@ -163,7 +163,7 @@ class HBNBCommand(cmd.Cmd):
                             newlist.append(each)
             new_instance = HBNBCommand.classes[class_name]()
             for attrs in newlist:
-                if type(attrs[0]) is str:
+                if type(attrs[1]) is str:
                     # replace underscores with space
                     attrs[1] = attrs[1].replace('_', ' ')
                         # escape doublequotes
