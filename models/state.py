@@ -12,8 +12,8 @@ class State(BaseModel, Base):
     cities = relationship("City",
                           cascade="all, delete-orphan", backref="state")
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
+    # def __init__(self, *args, **kwargs):
+    #     super().__init__(*args, **kwargs)
 
     @property
     def cities(self):
