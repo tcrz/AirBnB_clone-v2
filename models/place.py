@@ -5,9 +5,9 @@ from sqlalchemy import Column, String, Integer, Float, ForeignKey, Table
 from sqlalchemy.orm import relationship
 
 place_amenity = Table('place_amenity', Base.metadata,
-                      Column('place.id', String(60),
+                      Column('place_id', String(60),
                              ForeignKey('places.id'), primary_key=True),
-                      Column('amenity.id', String(60),
+                      Column('amenity_id', String(60),
                              ForeignKey('amenities.id'), primary_key=True))
 
 
@@ -28,7 +28,7 @@ class Place(BaseModel, Base):
     reviews = relationship("Review", cascade="all, delete-orphan",
                            backref="place")
     amenities = relationship('Amenity', secondary=place_amenity,
-                             viewonly=False)
+                             viewonly=False, backref='place')
 
     @property
     def reviews(self):
