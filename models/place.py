@@ -29,3 +29,15 @@ class Place(BaseModel, Base):
                            backref="place")
     amenities = relationship('Amenity', secondary=place_amenity,
                              viewonly=False, backref='place')
+
+    @property
+    def reviews(self):
+        import models
+        from models.review import Review
+
+        review_list = models.storage.all(Review)
+        linked_reviews = []
+        for obj_id in review_list:
+            if review_list[obj_id].place_id == self.id:
+                linked_reviews.append(review_list[obj_id])
+        return linked_reviews
