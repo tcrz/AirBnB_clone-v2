@@ -8,9 +8,10 @@ mkdir /data/web_static/releases
 mkdir /data/web_static/shared
 mkdir /data/web_static/releases/test
 touch /data/web_static/releases/test/index.html
-rm -f /data/web_static/current && ln -s /data/web_static/releases/test/ /data/w>
+echo "Deployment Test" > /data/web_static/releases/test/index.html
+rm -f /data/web_static/current && ln -s /data/web_static/releases/test/ /data/web_static/current
 chown -hR ubuntu:ubuntu /data
-redirect="\n\tlocation /hbnb_static {\n\t\talias /data/web_static/current/;\n\t>
+redirect="\n\tlocation /hbnb_static {\n\t\talias /data/web_static/current/;\n\t}\n"
 sudo sed -i "50s|.*|$redirect|" /etc/nginx/sites-enabled/default
 sudo /etc/init.d/nginx restart
 
