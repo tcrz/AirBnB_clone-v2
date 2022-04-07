@@ -16,7 +16,7 @@ app = Flask(__name__)
 @app.route('/', strict_slashes=False)
 def hello_HBNB():
     """Flask web application that displays 'Hello HBNB'"""
-    return "Hello HBNB!\n"
+    return "Hello HBNB!"
 
 
 if __name__ == "__main__":
