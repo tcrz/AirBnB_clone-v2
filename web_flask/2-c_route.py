@@ -5,6 +5,7 @@ script that starts a Flask web application:
 - Routes:
 - /: display “Hello HBNB!”
 - /hbnb: display "HBNB"
+- /c/<text>: display “C ”, followed by the value of the text variable
 - use the option strict_slashes=False in your route definition
 """
 
@@ -28,7 +29,8 @@ def HBNB_route():
 
 @app.route('/c/<text>', strict_slashes=False)
 def c_route(text):
-    """Flask web application that displays text at route:'c/<text>' """
+    """/c/<text>: display “C ”, followed by the value of the text variable
+(replace underscore _ symbols with a space)"""
     return "C " + text.replace("_", " ")
 
 
