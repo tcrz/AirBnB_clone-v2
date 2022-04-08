@@ -12,17 +12,14 @@ class State(BaseModel, Base):
     cities = relationship("City",
                           cascade="all, delete-orphan", backref="state")
 
-    # def __init__(self, *args, **kwargs):
-    #     super().__init__(*args, **kwargs)
-
     @property
     def cities(self):
         import models
         from models.city import City
 
-        city_list = models.storage.all(City)
+        city_dict = models.storage.all(City)
         temp = []
-        for c_id in city_list:
-            if city_list[c_id].state_id == self.id:
-                temp.append(city_list[c_id])
+        for c_id in city_dict:
+            if city_dict[c_id].state_id == self.id:
+                temp.append(city_dict[c_id])
         return temp
