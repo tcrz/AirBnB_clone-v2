@@ -40,13 +40,13 @@
 	border-radius: 4px;
 	overflow-y: scroll;
 	max-height: 300px;
-	/* scrollbar-width: none;  */
 }
 
 ::-webkit-scrollbar {
     width: 0px;  /* Remove scrollbar space */
     background: transparent;  /* Optional: just make scrollbar invisible */
 }
+
 
 .locations:hover .popover {
 	display: inline-block;
