@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<HTML lang="en">
+    <HEAD>
+        <TITLE>HBNB</TITLE>
+    </HEAD>
+    <BODY>
+        {% if request.endpoint == 'states_list'  %}
+            <H1>States</H1>
+            <UL>
+            {% for item in state_dict.items()|sort(attribute='1.name') %}
+            <LI>{{ item[1].id }}: <B>{{ item[1].name }}</B></LI>
+            {% endfor %}
+            </UL>
+        {%- elif request.endpoint == 'states_id_list' %}
+            {%- if key_id in state_dict %}
+            <H1>States: {{ state_dict[key_id].name }}</H1>
+                <H3>Cities:</H3>
+                <UL>
+                    {% for city in state_dict[key_id].cities|sort(attribute="name") %}
+                    <LI>{{city.id}}: <B>{{city.name}}</B></LI>
+                    {% endfor %}
+                </UL>
+            {% else %}
+                <H1>Not found!</H1>
+            {% endif %}
+        {% endif %}
+
+    </BODY>
+</HTML>
